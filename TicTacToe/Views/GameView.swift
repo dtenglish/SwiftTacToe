@@ -10,6 +10,7 @@ import SwiftUI
 struct GameView: View {
     //MARK: - PROPERTIES
 
+    @Binding var isPresented: Bool
     
     //MARK: - BODY
     var body: some View {
@@ -18,23 +19,23 @@ struct GameView: View {
                 Text("Waiting for player...")
                 
                 Button {
-                    // Quit the game
+                    isPresented = false
                 } label: {
                     GameButton(title: "Quit", backgroundColor: Color(.systemRed))
                 }
 
-                Text("Loading View")
+                LoadingView()
                 
                 Spacer()
                 
-                GameGridView(screenWidth: geometry.size.width)
+                GameGridView(viewModel: GameViewModel(), screenWidth: geometry.size.width)
             } //: VSTACK
         } //: GEOMETRY
     }
 }
 
-struct GameView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameView()
-    }
-}
+//struct GameView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GameView()
+//    }
+//}

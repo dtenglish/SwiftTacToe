@@ -8,6 +8,9 @@
 import SwiftUI
 
 final class GameViewModel: ObservableObject {
-
-    @Published var screenWidth: CGFloat = 0
+    let columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
 }
