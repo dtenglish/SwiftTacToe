@@ -18,6 +18,7 @@
 		BD6B0D7A283EAFD200013F85 /* PlayerIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D79283EAFD200013F85 /* PlayerIndicatorView.swift */; };
 		BD6B0D7C283EB11D00013F85 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D7B283EB11D00013F85 /* LoadingView.swift */; };
 		BD6B0D7E283EB22C00013F85 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D7D283EB22C00013F85 /* GameViewModel.swift */; };
+		BD6B0D82283EB63000013F85 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D81283EB63000013F85 /* GameModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		BD6B0D79283EAFD200013F85 /* PlayerIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerIndicatorView.swift; sourceTree = "<group>"; };
 		BD6B0D7B283EB11D00013F85 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BD6B0D7D283EB22C00013F85 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		BD6B0D81283EB63000013F85 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				BD6B0D5F283E998300013F85 /* TicTacToeApp.swift */,
+				BD6B0D83283EB63B00013F85 /* Model */,
 				BD6B0D73283EA0EB00013F85 /* Views */,
 				BD6B0D74283EA10400013F85 /* ViewModels */,
 				BD6B0D63283E998700013F85 /* Assets.xcassets */,
@@ -102,6 +105,14 @@
 				BD6B0D7D283EB22C00013F85 /* GameViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BD6B0D83283EB63B00013F85 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BD6B0D81283EB63000013F85 /* GameModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +190,7 @@
 				BD6B0D7A283EAFD200013F85 /* PlayerIndicatorView.swift in Sources */,
 				BD6B0D70283E9D5800013F85 /* GameButton.swift in Sources */,
 				BD6B0D6E283E9C4B00013F85 /* GameView.swift in Sources */,
+				BD6B0D82283EB63000013F85 /* GameModel.swift in Sources */,
 				BD6B0D76283EA6C000013F85 /* GameGridView.swift in Sources */,
 				BD6B0D7C283EB11D00013F85 /* LoadingView.swift in Sources */,
 				BD6B0D72283E9FA700013F85 /* HomeViewModel.swift in Sources */,

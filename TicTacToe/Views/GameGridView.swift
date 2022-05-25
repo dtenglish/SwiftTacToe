@@ -12,8 +12,6 @@ struct GameGridView: View {
     //MARK: - PROPERTIES
     
     @ObservedObject var viewModel: GameViewModel
-    
-    @State var imageName: String = ""
 
     var screenWidth: CGFloat
     
@@ -26,10 +24,10 @@ struct GameGridView: View {
                         Circle()
                             .foregroundColor(Color(.systemBlue).opacity(0.7))
                             .frame(width: screenWidth / 3 - 15, height: screenWidth / 3 - 15)
-                        PlayerIndicatorView(imageName: imageName)
+                        PlayerIndicatorView(imageName: viewModel.game.moves[i]?.playerIndicator ?? "")
                     }
                     .onTapGesture {
-                        imageName = "xmark"
+                        viewModel.playerMove(for: i)
                     }
                 }
             } //: VGRID
