@@ -8,8 +8,28 @@
 import SwiftUI
 
 struct GameView: View {
+    //MARK: - PROPERTIES
+
+    
+    //MARK: - BODY
     var body: some View {
-        Text("Game View")
+        GeometryReader { geometry in
+            VStack {
+                Text("Waiting for player...")
+                
+                Button {
+                    // Quit the game
+                } label: {
+                    GameButton(title: "Quit", backgroundColor: Color(.systemRed))
+                }
+
+                Text("Loading View")
+                
+                Spacer()
+                
+                GameGridView(screenWidth: geometry.size.width)
+            } //: VSTACK
+        } //: GEOMETRY
     }
 }
 
