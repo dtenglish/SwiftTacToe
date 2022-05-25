@@ -14,7 +14,7 @@ struct GameGridView: View {
     @ObservedObject var viewModel: GameViewModel
 
     var screenWidth: CGFloat
-    
+        
     //MARK: - BODY
     var body: some View {
         VStack {
@@ -24,7 +24,9 @@ struct GameGridView: View {
                         Circle()
                             .foregroundColor(Color(.systemBlue).opacity(0.7))
                             .frame(width: screenWidth / 3 - 15, height: screenWidth / 3 - 15)
-                        PlayerIndicatorView(imageName: viewModel.game.moves[i]?.playerIndicator ?? "")
+                        if let indicator = viewModel.game.moves[i]?.indicator {
+                            PlayerIndicatorView(imageName: indicator)
+                        }
                     }
                     .onTapGesture {
                         viewModel.playerMove(for: i)

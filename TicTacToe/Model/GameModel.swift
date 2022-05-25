@@ -22,7 +22,7 @@ struct Move: Codable {
     let isPlayer1: Bool
     let boardIndex: Int
     
-    var playerIndicator: String {
+    var indicator: String {
         return isPlayer1 ? "xmark" : "circle"
     }
 }
