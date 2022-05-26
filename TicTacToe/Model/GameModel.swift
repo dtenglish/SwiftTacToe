@@ -13,16 +13,16 @@ struct Game: Codable {
     var player2Id: String
     
     var activePlayerId: String
+    var winningPlayerId: String
+    var rematchPlayerIds: [String]
     
-    var moves: [Move?]
+    var moves: [Move?] = Array(repeating: nil, count: 9)
 }
 
 struct Move: Codable {
     
-    let isPlayer1: Bool
+    let player: String
     let boardIndex: Int
     
-    var indicator: String {
-        return isPlayer1 ? "xmark" : "circle"
-    }
+    var indicator: String
 }

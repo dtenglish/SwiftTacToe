@@ -11,12 +11,15 @@ struct GameView: View {
     //MARK: - PROPERTIES
 
     @Binding var isPresented: Bool
+    @StateObject var viewModel: GameViewModel = GameViewModel()
     
     //MARK: - BODY
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                Text("Waiting for player...")
+                if viewModel.game.player2Id == "" {
+                    Text("Waiting for player...")
+                }
                 
                 Button {
                     isPresented = false
@@ -28,9 +31,11 @@ struct GameView: View {
                 
                 Spacer()
                 
-                GameGridView(viewModel: GameViewModel(), screenWidth: geometry.size.width)
+                GameGridView(viewModel: viewModel, screenWidth: geometry.size.width)
             } //: VSTACK
         } //: GEOMETRY
+        .onAppear(
+        )
     }
 }
 

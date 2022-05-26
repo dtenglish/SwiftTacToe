@@ -15,7 +15,7 @@ final class GameViewModel: ObservableObject {
     
     @Published var currentUser: User!
     
-    @Published var game = Game(id: UUID().uuidString, player1Id: "player1", player2Id: "player2", activePlayerId: "player1", moves: Array(repeating: nil, count: 9))
+    @Published var game = Game(id: UUID().uuidString, player1Id: "player1", player2Id: "player2", activePlayerId: "player1", winningPlayerId: "", rematchPlayerIds: [])
     
     let columns: [GridItem] = [
         GridItem(.flexible()),
@@ -50,8 +50,9 @@ final class GameViewModel: ObservableObject {
         
             // Claim position for active player
             game.moves[position] = Move(
-                isPlayer1: game.activePlayerId == game.player1Id ? true : false,
-                boardIndex: position
+                player: currentUser.id,
+                boardIndex: position,
+                indicator: currentUser.id == game.player1Id ? "xmark" : "circle"
             )
             
             // Check win conditions
@@ -59,8 +60,8 @@ final class GameViewModel: ObservableObject {
                 print("Draw")
             }
             
-            if checkWinCondition(for: true, in: game.moves) {
-                print("\(game.activePlayerId) wins!")
+            if checkWinCondition(for: currentUser.id, in: game.moves) {
+                print("\(game.winningPlayerId) wins!")
             }
             
             // Change active user
@@ -79,11 +80,12 @@ final class GameViewModel: ObservableObject {
         }
     }
     
-    func checkWinCondition(for player1: Bool, in moves: [Move?]) -> Bool {
-        let playerMoves = moves.compactMap{ $0 }.filter{ $0.isPlayer1 == player1 }
+    func checkWinCondition(for player: String, in moves: [Move?]) -> Bool {
+        let playerMoves = moves.compactMap{ $0 }.filter{ $0.player == player }
         let playerPositions = Set(playerMoves.map { $0.boardIndex })
         
         for pattern in winPatterns where pattern.isSubset(of: playerPositions) {
+            game.winningPlayerId = currentUser.id
             return true
         }
         

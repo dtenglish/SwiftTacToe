@@ -24,6 +24,7 @@
 		BD6B0D8A283FF67200013F85 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BD6B0D89283FF67200013F85 /* FirebaseFirestoreSwift */; };
 		BD6B0D8C283FF72600013F85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD6B0D8B283FF72600013F85 /* GoogleService-Info.plist */; };
 		BD6B0D90284001E700013F85 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D8F284001E700013F85 /* FirebaseService.swift */; };
+		BD6B0D922840076A00013F85 /* FirebaseReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D912840076A00013F85 /* FirebaseReference.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		BD6B0D84283FEDCB00013F85 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		BD6B0D8B283FF72600013F85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BD6B0D8F284001E700013F85 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		BD6B0D912840076A00013F85 /* FirebaseReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReference.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				BD6B0D8F284001E700013F85 /* FirebaseService.swift */,
+				BD6B0D912840076A00013F85 /* FirebaseReference.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD6B0D7E283EB22C00013F85 /* GameViewModel.swift in Sources */,
+				BD6B0D922840076A00013F85 /* FirebaseReference.swift in Sources */,
 				BD6B0D62283E998300013F85 /* HomeView.swift in Sources */,
 				BD6B0D7A283EAFD200013F85 /* PlayerIndicatorView.swift in Sources */,
 				BD6B0D70283E9D5800013F85 /* GameButton.swift in Sources */,

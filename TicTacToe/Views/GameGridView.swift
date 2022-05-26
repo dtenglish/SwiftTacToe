@@ -29,7 +29,11 @@ struct GameGridView: View {
                         }
                     }
                     .onTapGesture {
-                        viewModel.playerMove(for: i)
+                        if viewModel.game.activePlayerId == viewModel.currentUser.id {
+                            viewModel.playerMove(for: i)
+                        } else {
+                            print("Not your turn.")
+                        }
                     }
                 }
             } //: VGRID
