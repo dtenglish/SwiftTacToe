@@ -17,6 +17,17 @@ final class GameViewModel: ObservableObject {
         GridItem(.flexible())
     ]
     
+    private let winPatterns: Set<Set<Int>> = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ]
+    
     func playerMove(for position: Int) {
         // Check to confirm selected position is unoccupied
         if game.moves[position] == nil {
@@ -27,10 +38,17 @@ final class GameViewModel: ObservableObject {
                 boardIndex: position
             )
             
+            // Check win conditions
+            if checkForDraw(in: game.moves) {
+                print("Draw")
+            }
+            
+            if checkWinCondition(for: true, in: game.moves) {
+                print("\(game.activePlayerId) wins!")
+            }
+            
             // Change active user
             changeActiveUser()
-            
-            // Check win conditions
         } else {
             // Indicate to player that move is invalid
             print("Position already claimed.")
@@ -43,6 +61,21 @@ final class GameViewModel: ObservableObject {
         } else {
             game.activePlayerId = game.player1Id
         }
+    }
+    
+    func checkWinCondition(for player1: Bool, in moves: [Move?]) -> Bool {
+        let playerMoves = moves.compactMap{ $0 }.filter{ $0.isPlayer1 == player1 }
+        let playerPositions = Set(playerMoves.map { $0.boardIndex })
+        
+        for pattern in winPatterns where pattern.isSubset(of: playerPositions) {
+            return true
+        }
+        
+        return false
+    }
+    
+    func checkForDraw(in moves: [Move?]) -> Bool {
+        return moves.compactMap{ $0 }.count == 9
     }
     
 }
