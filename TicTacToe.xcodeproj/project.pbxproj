@@ -19,6 +19,7 @@
 		BD6B0D7C283EB11D00013F85 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D7B283EB11D00013F85 /* LoadingView.swift */; };
 		BD6B0D7E283EB22C00013F85 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D7D283EB22C00013F85 /* GameViewModel.swift */; };
 		BD6B0D82283EB63000013F85 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D81283EB63000013F85 /* GameModel.swift */; };
+		BD6B0D85283FEDCC00013F85 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D84283FEDCB00013F85 /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		BD6B0D7B283EB11D00013F85 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BD6B0D7D283EB22C00013F85 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		BD6B0D81283EB63000013F85 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		BD6B0D84283FEDCB00013F85 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				BD6B0D81283EB63000013F85 /* GameModel.swift */,
+				BD6B0D84283FEDCB00013F85 /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				BD6B0D7C283EB11D00013F85 /* LoadingView.swift in Sources */,
 				BD6B0D72283E9FA700013F85 /* HomeViewModel.swift in Sources */,
 				BD6B0D60283E998300013F85 /* TicTacToeApp.swift in Sources */,
+				BD6B0D85283FEDCC00013F85 /* UserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

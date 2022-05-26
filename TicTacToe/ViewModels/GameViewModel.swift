@@ -9,6 +9,12 @@ import SwiftUI
 
 final class GameViewModel: ObservableObject {
     
+    //MARK: - PROPERTIES
+    
+    @AppStorage("user") private var userData: Data?
+    
+    @Published var currentUser: User!
+    
     @Published var game = Game(id: UUID().uuidString, player1Id: "player1", player2Id: "player2", activePlayerId: "player1", moves: Array(repeating: nil, count: 9))
     
     let columns: [GridItem] = [
@@ -27,6 +33,16 @@ final class GameViewModel: ObservableObject {
         [0, 4, 8],
         [2, 4, 6]
     ]
+    
+    init() {
+        retrieveUser()
+        
+        if currentUser == nil {
+            createUser()
+        }
+    }
+    
+    //MARK: - GAME FUNCTIONS
     
     func playerMove(for position: Int) {
         // Check to confirm selected position is unoccupied
@@ -78,4 +94,26 @@ final class GameViewModel: ObservableObject {
         return moves.compactMap{ $0 }.count == 9
     }
     
+    //MARK: - USER FUNCTIONS
+    
+    func retrieveUser() {
+        guard let userData = userData else { return }
+        
+        do {
+            currentUser = try JSONDecoder().decode(User.self, from: userData)
+            print("Loaded user: ", currentUser!)
+        } catch {
+            print("Error retrieving user.")
+        }
+    }
+    
+    func createUser() {
+        currentUser = User()
+        do {
+            userData = try JSONEncoder().encode(currentUser)
+            print("Created user: ", currentUser!)
+        } catch {
+            print("Error encoding user data.")
+        }
+    }
 }
