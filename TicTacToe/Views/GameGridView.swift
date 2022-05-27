@@ -31,8 +31,10 @@ struct GameGridView: View {
                     .onTapGesture {
                         if viewModel.game?.activePlayerId == viewModel.currentUser.id {
                             viewModel.playerMove(for: i)
+                            playSound(sound: "sound-rise", type: "mp3")
                         } else {
                             print("Not your turn.")
+                            playSound(sound: "sound-tap", type: "mp3")
                         }
                     }
                 }

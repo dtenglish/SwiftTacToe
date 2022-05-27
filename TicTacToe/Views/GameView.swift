@@ -23,6 +23,7 @@ struct GameView: View {
                 
                 Button {
                     viewModel.quitGame()
+                    playSound(sound: "sound-tap", type: "mp3")
                     isPresented = false
                 } label: {
                     GameButton(title: "Quit", backgroundColor: Color(.systemRed))

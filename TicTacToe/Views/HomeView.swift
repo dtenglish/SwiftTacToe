@@ -16,6 +16,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             Button {
+                playSound(sound: "sound-tap", type: "mp3")
                 viewModel.isGameViewPresented = true
             } label: {
                 GameButton(title: "Play", backgroundColor: Color(.systemGreen))
