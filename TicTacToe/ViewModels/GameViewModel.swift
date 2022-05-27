@@ -16,7 +16,13 @@ final class GameViewModel: ObservableObject {
     
     @Published var currentUser: User!
     
-    @Published var game: Game?
+    @Published var game: Game? {
+        didSet {
+            updateStatusText()
+        }
+    }
+    
+    @Published var gameStatusText: String = "Waiting for player..."
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -66,16 +72,18 @@ final class GameViewModel: ObservableObject {
             game?.moves[position] = Move(
                 player: currentUser.id,
                 boardIndex: position,
-                indicator: currentUser.id == game?.player1Id ? "xmark" : "circle"
+                marker: currentUser.id == game?.player1Id ? "xmark" : "circle"
             )
             
             // Check win conditions
             if checkWinCondition(for: currentUser.id, in: game!.moves) {
-                print("\(game!.winningPlayerId) wins!")
+//                gameStatusText = String("\(game!.winningPlayerId) wins!")
+                game?.isActive = false
             }
             
             if checkForDraw(in: game!.moves){
-                print("Draw")
+//                gameStatusText = "Draw"
+                game?.isActive = false
             }
             
             // Change active user
@@ -85,8 +93,37 @@ final class GameViewModel: ObservableObject {
             FirebaseService.shared.updateGame(game!)
         } else {
             // Indicate to player that move is invalid
-            print("Position already claimed.")
+//            gameStatusText = String("Position already claimed.")
         }
+    }
+    
+    func updateStatusText() {
+        guard game != nil else { return }
+        
+        if game?.winningPlayerId == currentUser.id {
+            gameStatusText = String("You win!")
+            return
+        }
+        
+        if game?.winningPlayerId != currentUser.id && game?.winningPlayerId != "" {
+            gameStatusText = String("You lose!")
+            return
+        }
+        
+        if game?.winningPlayerId == "draw" {
+            gameStatusText = "Draw"
+            return
+        }
+        
+        if game?.isActive == true && game?.activePlayerId == currentUser.id {
+            gameStatusText = "Your turn"
+        }
+        
+        if game?.isActive == true && game?.activePlayerId != currentUser.id {
+            gameStatusText = "Opponent's turn"
+        }
+        
+        return
     }
     
     func changeActiveUser() {

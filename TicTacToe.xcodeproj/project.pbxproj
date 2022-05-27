@@ -15,7 +15,7 @@
 		BD6B0D70283E9D5800013F85 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D6F283E9D5800013F85 /* GameButton.swift */; };
 		BD6B0D72283E9FA700013F85 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D71283E9FA700013F85 /* HomeViewModel.swift */; };
 		BD6B0D76283EA6C000013F85 /* GameGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D75283EA6C000013F85 /* GameGridView.swift */; };
-		BD6B0D7A283EAFD200013F85 /* PlayerIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D79283EAFD200013F85 /* PlayerIndicatorView.swift */; };
+		BD6B0D7A283EAFD200013F85 /* PlayerMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D79283EAFD200013F85 /* PlayerMarkerView.swift */; };
 		BD6B0D7C283EB11D00013F85 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D7B283EB11D00013F85 /* LoadingView.swift */; };
 		BD6B0D7E283EB22C00013F85 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D7D283EB22C00013F85 /* GameViewModel.swift */; };
 		BD6B0D82283EB63000013F85 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0D81283EB63000013F85 /* GameModel.swift */; };
@@ -41,7 +41,7 @@
 		BD6B0D6F283E9D5800013F85 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
 		BD6B0D71283E9FA700013F85 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		BD6B0D75283EA6C000013F85 /* GameGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameGridView.swift; sourceTree = "<group>"; };
-		BD6B0D79283EAFD200013F85 /* PlayerIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerIndicatorView.swift; sourceTree = "<group>"; };
+		BD6B0D79283EAFD200013F85 /* PlayerMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerMarkerView.swift; sourceTree = "<group>"; };
 		BD6B0D7B283EB11D00013F85 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		BD6B0D7D283EB22C00013F85 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		BD6B0D81283EB63000013F85 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 				BD6B0D6D283E9C4B00013F85 /* GameView.swift */,
 				BD6B0D75283EA6C000013F85 /* GameGridView.swift */,
 				BD6B0D6F283E9D5800013F85 /* GameButton.swift */,
-				BD6B0D79283EAFD200013F85 /* PlayerIndicatorView.swift */,
+				BD6B0D79283EAFD200013F85 /* PlayerMarkerView.swift */,
 				BD6B0D7B283EB11D00013F85 /* LoadingView.swift */,
 			);
 			path = Views;
@@ -251,7 +251,7 @@
 				BD6B0D7E283EB22C00013F85 /* GameViewModel.swift in Sources */,
 				BD6B0D922840076A00013F85 /* FirebaseReference.swift in Sources */,
 				BD6B0D62283E998300013F85 /* HomeView.swift in Sources */,
-				BD6B0D7A283EAFD200013F85 /* PlayerIndicatorView.swift in Sources */,
+				BD6B0D7A283EAFD200013F85 /* PlayerMarkerView.swift in Sources */,
 				BD6B0D70283E9D5800013F85 /* GameButton.swift in Sources */,
 				BD6B0D6E283E9C4B00013F85 /* GameView.swift in Sources */,
 				BD6B0D82283EB63000013F85 /* GameModel.swift in Sources */,

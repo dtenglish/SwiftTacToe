@@ -1,5 +1,5 @@
 //
-//  PlayerIndicatorView.swift
+//  PlayerMarkerView.swift
 //  TicTacToe
 //
 //  Created by Daniel Taylor English on 5/25/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PlayerIndicatorView: View {
+struct PlayerMarkerView: View {
     
     //MARK: - PROPERTIES
     var imageName: String
@@ -21,8 +21,8 @@ struct PlayerIndicatorView: View {
     }
 }
 
-struct PlayerIndicatorView_Previews: PreviewProvider {
+struct PlayerMarkerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerIndicatorView(imageName: "xmark")
+        PlayerMarkerView(imageName: "xmark")
     }
 }

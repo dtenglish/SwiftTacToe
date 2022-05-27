@@ -16,6 +16,8 @@ struct Game: Codable {
     var winningPlayerId: String
     var rematchPlayerIds: [String]
     
+    var isActive: Bool
+    
     var moves: [Move?] = Array(repeating: nil, count: 9)
 }
 
@@ -24,5 +26,5 @@ struct Move: Codable {
     let player: String
     let boardIndex: Int
     
-    var indicator: String
+    var marker: String
 }

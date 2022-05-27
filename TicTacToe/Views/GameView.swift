@@ -17,9 +17,6 @@ struct GameView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
-                if viewModel.game?.player2Id == "" {
-                    Text("Waiting for player...")
-                }
                 
                 Button {
                     viewModel.quitGame()
@@ -28,12 +25,19 @@ struct GameView: View {
                 } label: {
                     GameButton(title: "Quit", backgroundColor: Color(.systemRed))
                 }
+                Text(viewModel.gameStatusText)
+                    .padding()
+                
+                if viewModel.game?.player2Id == "" {
+                    LoadingView()
+                } else {
+                    Spacer()
+                    
+                    GameGridView(viewModel: viewModel, screenWidth: geometry.size.width)
+                    
+                    Spacer()
+                }
 
-//                LoadingView()
-                
-                Spacer()
-                
-                GameGridView(viewModel: viewModel, screenWidth: geometry.size.width)
             } //: VSTACK
         } //: GEOMETRY
         .onAppear{
