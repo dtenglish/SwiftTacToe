@@ -24,12 +24,12 @@ struct GameGridView: View {
                         Circle()
                             .foregroundColor(Color(.systemBlue).opacity(0.7))
                             .frame(width: screenWidth / 3 - 15, height: screenWidth / 3 - 15)
-                        if let indicator = viewModel.game.moves[i]?.indicator {
+                        if let indicator = viewModel.game?.moves[i]?.indicator {
                             PlayerIndicatorView(imageName: indicator)
                         }
                     }
                     .onTapGesture {
-                        if viewModel.game.activePlayerId == viewModel.currentUser.id {
+                        if viewModel.game?.activePlayerId == viewModel.currentUser.id {
                             viewModel.playerMove(for: i)
                         } else {
                             print("Not your turn.")

@@ -15,24 +15,27 @@ final class FirebaseService: ObservableObject {
     
     @Published var game: Game!
     
-    func joinExistingGame(with userId: String) {
+    func startGame(with userId: String) {
+        // Check if there is an existing game to join, if not create new game
         FirebaseReference(.Game)
             .whereField("player2Id", isEqualTo: "")
             .whereField("player1Id", isNotEqualTo: userId)
             .getDocuments { querySnapshot, error in
                 
             if error != nil {
-                print("Error joining game: ", error!.localizedDescription)
+                print("Error starting game: ", error!.localizedDescription)
             }
             
             if let gameData = querySnapshot?.documents.first {
                 self.game = try? gameData.data(as: Game.self)
                 self.game.player2Id = userId
                 self.updateGame(self.game)
-                self.listenForGameChanges()
+                print("Joined existing game with user: ", self.game.player1Id)
             } else {
                 self.createNewGame(with: userId)
             }
+                
+            self.listenForGameChanges()
         }
     }
     
@@ -49,14 +52,32 @@ final class FirebaseService: ObservableObject {
     }
     
     func updateGame(_ game: Game) {
-        
+        do {
+            try FirebaseReference(.Game).document(game.id).setData(from: game)
+        } catch {
+            print("Error updating online game: ", error.localizedDescription)
+        }
     }
     
     func listenForGameChanges() {
+        FirebaseReference(.Game).document(self.game.id).addSnapshotListener { documentSnapshot, error in
+            print("Changes received from firebase.")
+            
+            if error != nil {
+                print("Error receiving changes from firebase: ", error!.localizedDescription)
+                return
+            }
+            
+            if let snapshot = documentSnapshot {
+                self.game = try? snapshot.data(as: Game.self)
+            }
+        }
         
     }
     
-    func quitGame() {
-        
+    func deleteGame() {
+        guard game != nil else { return }
+        FirebaseReference(.Game).document(self.game.id).delete()
+        print("Deleting game")
     }
 }
