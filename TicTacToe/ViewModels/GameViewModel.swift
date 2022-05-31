@@ -93,7 +93,7 @@ final class GameViewModel: ObservableObject {
             FirebaseService.shared.updateGame(game!)
         } else {
             // Indicate to player that move is invalid
-//            gameStatusText = String("Position already claimed.")
+            gameStatusText = String("Position already claimed, please select an open space.")
         }
     }
     

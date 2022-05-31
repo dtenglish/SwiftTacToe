@@ -25,17 +25,18 @@ struct GameView: View {
                 } label: {
                     GameButton(title: "Quit", backgroundColor: Color(.systemRed))
                 }
+                
                 Text(viewModel.gameStatusText)
                     .padding()
                 
-                if viewModel.game?.player2Id == "" {
-                    LoadingView()
-                } else {
+                if viewModel.game != nil && viewModel.game?.player2Id != "" {
                     Spacer()
                     
                     GameGridView(viewModel: viewModel, screenWidth: geometry.size.width)
                     
                     Spacer()
+                } else {
+                    LoadingView()
                 }
 
             } //: VSTACK

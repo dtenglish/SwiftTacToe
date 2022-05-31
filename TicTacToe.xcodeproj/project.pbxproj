@@ -29,6 +29,7 @@
 		BD6B0D9F284160D100013F85 /* sound-rise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD6B0D9C284160D100013F85 /* sound-rise.mp3 */; };
 		BD6B0DA0284160D100013F85 /* sound-ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD6B0D9D284160D100013F85 /* sound-ding.mp3 */; };
 		BD6B0DA1284160D100013F85 /* sound-tap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD6B0D9E284160D100013F85 /* sound-tap.mp3 */; };
+		BD6B0DA32846A0DE00013F85 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0DA22846A0DE00013F85 /* AlertModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		BD6B0D9C284160D100013F85 /* sound-rise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "sound-rise.mp3"; path = "TicTacToe/Sounds/sound-rise.mp3"; sourceTree = SOURCE_ROOT; };
 		BD6B0D9D284160D100013F85 /* sound-ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "sound-ding.mp3"; path = "TicTacToe/Sounds/sound-ding.mp3"; sourceTree = SOURCE_ROOT; };
 		BD6B0D9E284160D100013F85 /* sound-tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "sound-tap.mp3"; path = "TicTacToe/Sounds/sound-tap.mp3"; sourceTree = SOURCE_ROOT; };
+		BD6B0DA22846A0DE00013F85 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			children = (
 				BD6B0D81283EB63000013F85 /* GameModel.swift */,
 				BD6B0D84283FEDCB00013F85 /* UserModel.swift */,
+				BD6B0DA22846A0DE00013F85 /* AlertModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				BD6B0D60283E998300013F85 /* TicTacToeApp.swift in Sources */,
 				BD6B0D90284001E700013F85 /* FirebaseService.swift in Sources */,
 				BD6B0D85283FEDCC00013F85 /* UserModel.swift in Sources */,
+				BD6B0DA32846A0DE00013F85 /* AlertModel.swift in Sources */,
 				BD6B0D9728415A2100013F85 /* AudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
