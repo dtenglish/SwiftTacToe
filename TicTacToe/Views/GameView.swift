@@ -10,36 +10,42 @@ import SwiftUI
 struct GameView: View {
     //MARK: - PROPERTIES
 
-    @Binding var isPresented: Bool
     @StateObject var viewModel: GameViewModel = GameViewModel()
+    @Environment(\.dismiss) private var dismiss
     
     //MARK: - BODY
     var body: some View {
         GeometryReader { geometry in
-            VStack {
-                
-                Button {
-                    viewModel.quitGame()
-                    playSound(sound: "sound-tap", type: "mp3")
-                    isPresented = false
-                } label: {
-                    GameButton(title: "Quit", backgroundColor: Color(.systemRed))
-                }
-                
-                Text(viewModel.gameStatusText)
-                    .padding()
-                
-                if viewModel.game != nil && viewModel.game?.player2Id != "" {
-                    Spacer()
+            ZStack {
+                VStack {
                     
-                    GameGridView(viewModel: viewModel, screenWidth: geometry.size.width)
+                    Button {
+                        viewModel.quitGame()
+                        playSound(sound: "sound-tap", type: "mp3")
+                        dismiss()
+                    } label: {
+                        GameButton(title: "Quit", backgroundColor: Color(.systemRed), width: 300)
+                    }
                     
-                    Spacer()
-                } else {
-                    LoadingView()
-                }
+                    Text(viewModel.gameStatusText)
+                        .padding()
+                    
+                    if viewModel.game != nil && viewModel.game?.player2Id != "" {
+                        Spacer()
+                        
+                        GameGridView(viewModel: viewModel, screenWidth: geometry.size.width)
+                            .onAppear{
+                                viewModel.setOpponentId()
+                            }
+                        
+                        Spacer()
+                    } else {
+                        LoadingView()
+                    }
 
-            } //: VSTACK
+                } //: VSTACK
+                PopupMessageView(viewModel: viewModel)
+            } //: ZSTACK
         } //: GEOMETRY
         .onAppear{
             viewModel.initializeGame()

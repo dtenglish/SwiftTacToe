@@ -19,12 +19,12 @@ struct HomeView: View {
                 playSound(sound: "sound-tap", type: "mp3")
                 viewModel.isGameViewPresented = true
             } label: {
-                GameButton(title: "Play", backgroundColor: Color(.systemGreen))
+                GameButton(title: "Play", backgroundColor: Color(.systemGreen), width: 300)
             }
 
         }
         .fullScreenCover(isPresented: $viewModel.isGameViewPresented) {
-            GameView(isPresented: $viewModel.isGameViewPresented)
+            GameView()
         }
     }
 }

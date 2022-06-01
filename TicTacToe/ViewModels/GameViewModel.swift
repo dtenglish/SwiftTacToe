@@ -16,13 +16,21 @@ final class GameViewModel: ObservableObject {
     
     @Published var currentUser: User!
     
+    @Published var opponenentId: String?
+    
     @Published var game: Game? {
         didSet {
-            updateStatusText()
+            updateGameStatus()
         }
     }
     
     @Published var gameStatusText: String = "Waiting for player..."
+    
+    @Published var showPopup: Bool = false
+    
+    @Published var popupTitle: String = ""
+    
+    @Published var popupMessage: String = ""
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -97,21 +105,31 @@ final class GameViewModel: ObservableObject {
         }
     }
     
-    func updateStatusText() {
+    func updateGameStatus() {
+        // Check for game before unwrapping optional
         guard game != nil else { return }
         
+        if game?.winningPlayerId == "draw" {
+            gameStatusText = "Game Over"
+            showPopup = true
+            popupTitle = "Draw!"
+            popupMessage = "It's a draw! Would you like to play again?"
+            return
+        }
+        
         if game?.winningPlayerId == currentUser.id {
-            gameStatusText = String("You win!")
+            gameStatusText = "Game Over"
+            showPopup = true
+            popupTitle = "Victory!"
+            popupMessage = "You win! Would you like to play again?"
             return
         }
         
         if game?.winningPlayerId != currentUser.id && game?.winningPlayerId != "" {
-            gameStatusText = String("You lose!")
-            return
-        }
-        
-        if game?.winningPlayerId == "draw" {
-            gameStatusText = "Draw"
+            gameStatusText = "Game Over"
+            showPopup = true
+            popupTitle = "Defeat!"
+            popupMessage = "You lose! Would you like to play again?"
             return
         }
         
@@ -184,6 +202,17 @@ final class GameViewModel: ObservableObject {
             print("Created user: ", currentUser!)
         } catch {
             print("Error encoding user data.")
+        }
+    }
+    
+    func setOpponentId() {
+        // Check for game before unwrapping optional
+        guard game != nil else { return }
+        
+        if game?.player1Id == currentUser.id {
+            opponenentId = game!.player2Id
+        } else {
+            opponenentId = game!.player1Id
         }
     }
 }
