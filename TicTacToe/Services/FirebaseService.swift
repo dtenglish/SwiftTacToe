@@ -29,6 +29,7 @@ final class FirebaseService: ObservableObject {
             if let gameData = querySnapshot?.documents.first {
                 self.game = try? gameData.data(as: Game.self)
                 self.game.player2Id = userId
+                self.game.connectedPlayerIds.append(userId)
                 self.game.isActive = true
                 
                 self.updateGame(self.game)
@@ -36,7 +37,7 @@ final class FirebaseService: ObservableObject {
             } else {
                 self.createNewGame(with: userId)
             }
-                
+        
             self.listenForGameChanges()
         }
     }
@@ -44,7 +45,9 @@ final class FirebaseService: ObservableObject {
     func createNewGame(with userId: String) {
         print("Creating new game for user: ", userId)
         
-        self.game = Game(id: UUID().uuidString, player1Id: userId, player2Id: "", activePlayerId: userId, winningPlayerId: "", rematchPlayerIds: [], isActive: false)
+        self.game = Game(id: UUID().uuidString, player1Id: userId, player2Id: "", activePlayerId: userId, winningPlayerId: "",  connectedPlayerIds: [], rematchPlayerIds: [], isActive: false)
+        
+        self.game.connectedPlayerIds.append(userId)
         
         do {
             try FirebaseReference(.Game).document(self.game.id).setData(from: self.game)

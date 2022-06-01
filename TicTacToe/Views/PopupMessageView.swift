@@ -27,10 +27,13 @@ struct PopupMessageView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom)
                     HStack {
-                        Button {
-                            // Rematch
-                        } label: {
-                            GameButton(title: "Rematch", backgroundColor: Color(.systemGreen), width: 160)
+                        if viewModel.popupTitle != "Opponent has left" {
+                            Button {
+                                viewModel.resetGame()
+                                viewModel.showPopup = false
+                            } label: {
+                                GameButton(title: "Rematch", backgroundColor: Color(.systemGreen), width: 160)
+                            }
                         }
                         Button {
                             viewModel.quitGame()

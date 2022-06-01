@@ -14,6 +14,7 @@ struct Game: Codable {
     
     var activePlayerId: String
     var winningPlayerId: String
+    var connectedPlayerIds: [String]
     var rematchPlayerIds: [String]
     
     var isActive: Bool
