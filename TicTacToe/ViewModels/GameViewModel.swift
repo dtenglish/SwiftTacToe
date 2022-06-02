@@ -34,12 +34,6 @@ final class GameViewModel: ObservableObject {
     
     private var cancellables: Set<AnyCancellable> = []
     
-    let columns: [GridItem] = [
-        GridItem(.flexible()),
-        GridItem(.flexible()),
-        GridItem(.flexible())
-    ]
-    
     private let winPatterns: Set<Set<Int>> = [
         [0, 1, 2],
         [3, 4, 5],
@@ -149,11 +143,11 @@ final class GameViewModel: ObservableObject {
             return
         }
         
-        if game?.connectedPlayerIds.count == 2 && game?.activePlayerId == currentUser.id {
+        if game!.isActive && game?.activePlayerId == currentUser.id {
             gameStatusText = "Your turn"
         }
         
-        if game?.connectedPlayerIds.count == 2 && game?.activePlayerId != currentUser.id {
+        if game!.isActive && game?.activePlayerId != currentUser.id {
             gameStatusText = "Opponent's turn"
         }
 

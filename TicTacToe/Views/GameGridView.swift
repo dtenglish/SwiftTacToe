@@ -14,11 +14,17 @@ struct GameGridView: View {
     @ObservedObject var viewModel: GameViewModel
 
     var screenWidth: CGFloat
+    
+    let columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
         
     //MARK: - BODY
     var body: some View {
         VStack {
-            LazyVGrid(columns: viewModel.columns, spacing:  5) {
+            LazyVGrid(columns: columns, spacing:  5) {
                 ForEach(0..<9) { i in
                     ZStack {
                         Circle()

@@ -36,6 +36,7 @@ struct GameView: View {
                         GameGridView(viewModel: viewModel, screenWidth: geometry.size.width)
                             .onAppear{
                                 viewModel.setOpponentId()
+                                viewModel.updateGameStatus()
                             }
                         
                         Spacer()
