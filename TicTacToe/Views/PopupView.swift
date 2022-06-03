@@ -1,5 +1,5 @@
 //
-//  PopupMessageView.swift
+//  PopupView.swift
 //  TicTacToe
 //
 //  Created by Daniel Taylor English on 5/31/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PopupMessageView: View {
+struct PopupView: View {
     //MARK: - PROPERTIES
     @ObservedObject var viewModel: GameViewModel
     @Environment(\.dismiss) private var dismiss
@@ -27,20 +27,17 @@ struct PopupMessageView: View {
                         .multilineTextAlignment(.center)
                         .padding(.bottom)
                     HStack {
-                        if viewModel.popupTitle != "Opponent has left" {
-                            Button {
-                                viewModel.resetGame()
-                                viewModel.showPopup = false
-                            } label: {
-                                GameButton(title: "Rematch", backgroundColor: Color(.systemGreen), width: 160)
-                            }
+                        if let title = viewModel.button1Title, let color = viewModel.button1Color {
+                            GameButton(title: title, backgroundColor: color, width: 160, action: {
+                                playSound(sound: "sound-tap", type: "mp3")
+                                viewModel.button1Action()
+                            })
                         }
-                        Button {
-                            viewModel.quitGame()
-                            viewModel.showPopup = false
-                            dismiss()
-                        } label: {
-                            GameButton(title: "Quit", backgroundColor: Color(.systemRed), width: 160)
+                        if let title = viewModel.button2Title, let color = viewModel.button2Color  {
+                            GameButton(title: title, backgroundColor: color, width: 160, action: {
+                                playSound(sound: "sound-tap", type: "mp3")
+                                viewModel.button2Action()
+                            })
                         }
                     }
                 } //: VSTACK

@@ -11,13 +11,10 @@ import Combine
 final class GameViewModel: ObservableObject {
     
     //MARK: - PROPERTIES
-    
     @AppStorage("user") private var userData: Data?
-    
     @Published var currentUser: User!
-    
     @Published var opponenentId: String?
-    
+    @Published var dismissView: Bool = false
     @Published var game: Game? {
         didSet {
             updateGameStatus()
@@ -25,12 +22,15 @@ final class GameViewModel: ObservableObject {
     }
     
     @Published var gameStatusText: String = "Waiting for player..."
-    
     @Published var showPopup: Bool = false
-    
     @Published var popupTitle: String = ""
-    
     @Published var popupMessage: String = ""
+    @Published var button1Title: String?
+    @Published var button1Color: Color?
+    @Published var button1Action: () -> Void = { }
+    @Published var button2Title: String?
+    @Published var button2Color: Color?
+    @Published var button2Action: () -> Void = { }
     
     private var cancellables: Set<AnyCancellable> = []
     
@@ -51,11 +51,6 @@ final class GameViewModel: ObservableObject {
         if currentUser == nil {
             createUser()
         }
-        
-        showPopup = false
-        popupTitle = ""
-        popupMessage = ""
-        
     }
     
     //MARK: - GAME FUNCTIONS
@@ -101,45 +96,33 @@ final class GameViewModel: ObservableObject {
         // Check for game before unwrapping optional
         guard game != nil else { return }
         
+        updatePopup()
+        
         if game!.connectedPlayerIds.count < 2 && game!.isActive {
             gameStatusText = "Game Over"
             showPopup = true
-            popupTitle = "Opponent has left"
-            popupMessage = "Opponent has left the game, please return to the main menu."
             return
         }
         
         // Check for opponent ID before unwrapping optional
         guard opponenentId != nil else { return }
         
-        if game!.rematchPlayerIds.contains(opponenentId!) {
-            // Inform opponent of rematch request
-            popupTitle = "Rematch?"
-            popupMessage = "Opponent would like to play again!"
-            return
-        }
         
         if game?.winningPlayerId == "draw" {
             gameStatusText = "Draw"
             showPopup = true
-            popupTitle = "Draw!"
-            popupMessage = "It's a draw! Would you like to play again?"
             return
         }
         
         if game?.winningPlayerId == currentUser.id {
             gameStatusText = "You win!"
             showPopup = true
-            popupTitle = "Victory!"
-            popupMessage = "You win! Would you like to play again?"
             return
         }
         
         if game?.winningPlayerId != currentUser.id && game?.winningPlayerId != "" {
             gameStatusText = "You lose!"
             showPopup = true
-            popupTitle = "Defeat!"
-            popupMessage = "You lose! Would you like to play again?"
             return
         }
         
@@ -182,14 +165,11 @@ final class GameViewModel: ObservableObject {
             game?.activePlayerId = "none"
             return
         }
-        
-
     }
     
     func resetGame() {
-        guard game != nil else {
-            return
-        }
+        // Check for game before unwrapping optional
+        guard game != nil else { return }
         
         game!.rematchPlayerIds.append(currentUser.id)
         
@@ -210,6 +190,9 @@ final class GameViewModel: ObservableObject {
     }
     
     func quitGame() {
+        // Check for game before unwrapping optional
+        guard game != nil else { return }
+        
         game?.connectedPlayerIds.removeAll(where: {$0 == currentUser.id})
         
         FirebaseService.shared.updateGame(game!)
@@ -252,4 +235,71 @@ final class GameViewModel: ObservableObject {
             opponenentId = game!.player1Id
         }
     }
+    
+    //MARK: - POPUP FUNCTIONS
+    func updatePopup() {
+        // Check for optionals before unwrapping
+        guard game != nil else { return }
+        guard opponenentId != nil else { return }
+        
+        // Set buttons
+        button1Title = "Rematch"
+        button1Color = Color(.systemGreen)
+        button1Action = {
+            self.resetGame()
+            self.showPopup = false
+        }
+        
+        button2Title = "Quit"
+        button2Color = Color(.systemRed)
+        button2Action = {
+            self.quitGame()
+            self.showPopup = false
+            self.dismissView = true
+        }
+        
+        // Opponent disconnected
+        if game!.connectedPlayerIds.count < 2 && game!.isActive {
+            popupTitle = "Opponent has left"
+            popupMessage = "Opponent has left the game, please return to the main menu."
+            button1Title = nil
+            button1Color = nil
+            return
+        }
+    
+        // Game completed
+        if game?.winningPlayerId != nil {
+            
+            // Rematch request
+            if game!.rematchPlayerIds.contains(opponenentId!) {
+                popupTitle = "Rematch?"
+                popupMessage = "Opponent would like to play again!"
+                return
+            }
+
+            // Victory
+            if game?.winningPlayerId == currentUser.id {
+                popupTitle = "Victory!"
+                popupMessage = "You win! Would you like to play again?"
+                return
+            }
+        
+            // Defeat
+            if game?.winningPlayerId == opponenentId {
+                popupTitle = "Defeat!"
+                popupMessage = "You lose! Would you like to play again?"
+                return
+            }
+        
+            // Draw
+            if game?.winningPlayerId == "draw" {
+                popupTitle = "Draw!"
+                popupMessage = "Draw! Would you like to play again?"
+                return
+            }
+            
+        }
+        
+        // Quit confirmation
+        }
 }

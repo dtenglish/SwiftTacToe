@@ -29,7 +29,7 @@
 		BD6B0D9F284160D100013F85 /* sound-rise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD6B0D9C284160D100013F85 /* sound-rise.mp3 */; };
 		BD6B0DA0284160D100013F85 /* sound-ding.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD6B0D9D284160D100013F85 /* sound-ding.mp3 */; };
 		BD6B0DA1284160D100013F85 /* sound-tap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BD6B0D9E284160D100013F85 /* sound-tap.mp3 */; };
-		BD6B0DA72846B4AD00013F85 /* PopupMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0DA62846B4AD00013F85 /* PopupMessageView.swift */; };
+		BD6B0DA72846B4AD00013F85 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6B0DA62846B4AD00013F85 /* PopupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +54,7 @@
 		BD6B0D9C284160D100013F85 /* sound-rise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "sound-rise.mp3"; path = "TicTacToe/Sounds/sound-rise.mp3"; sourceTree = SOURCE_ROOT; };
 		BD6B0D9D284160D100013F85 /* sound-ding.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "sound-ding.mp3"; path = "TicTacToe/Sounds/sound-ding.mp3"; sourceTree = SOURCE_ROOT; };
 		BD6B0D9E284160D100013F85 /* sound-tap.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "sound-tap.mp3"; path = "TicTacToe/Sounds/sound-tap.mp3"; sourceTree = SOURCE_ROOT; };
-		BD6B0DA62846B4AD00013F85 /* PopupMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupMessageView.swift; sourceTree = "<group>"; };
+		BD6B0DA62846B4AD00013F85 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +73,6 @@
 		BD6B0D53283E998200013F85 = {
 			isa = PBXGroup;
 			children = (
-				BD6B0D9B284160A600013F85 /* Sounds */,
 				BD6B0D5E283E998300013F85 /* TicTacToe */,
 				BD6B0D5D283E998300013F85 /* Products */,
 			);
@@ -96,6 +95,7 @@
 				BD6B0D74283EA10400013F85 /* ViewModels */,
 				BD6B0D8E284001A000013F85 /* Services */,
 				BD6B0D95284159D500013F85 /* Utilities */,
+				BD6B0D9B284160A600013F85 /* Sounds */,
 				BD6B0D63283E998700013F85 /* Assets.xcassets */,
 				BD6B0D8B283FF72600013F85 /* GoogleService-Info.plist */,
 				BD6B0D65283E998700013F85 /* Preview Content */,
@@ -120,7 +120,7 @@
 				BD6B0D6F283E9D5800013F85 /* GameButton.swift */,
 				BD6B0D79283EAFD200013F85 /* PlayerMarkerView.swift */,
 				BD6B0D7B283EB11D00013F85 /* LoadingView.swift */,
-				BD6B0DA62846B4AD00013F85 /* PopupMessageView.swift */,
+				BD6B0DA62846B4AD00013F85 /* PopupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -167,7 +167,8 @@
 				BD6B0D9C284160D100013F85 /* sound-rise.mp3 */,
 				BD6B0D9E284160D100013F85 /* sound-tap.mp3 */,
 			);
-			path = Sounds;
+			name = Sounds;
+			path = Utilities/Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +257,7 @@
 				BD6B0D62283E998300013F85 /* HomeView.swift in Sources */,
 				BD6B0D7A283EAFD200013F85 /* PlayerMarkerView.swift in Sources */,
 				BD6B0D70283E9D5800013F85 /* GameButton.swift in Sources */,
-				BD6B0DA72846B4AD00013F85 /* PopupMessageView.swift in Sources */,
+				BD6B0DA72846B4AD00013F85 /* PopupView.swift in Sources */,
 				BD6B0D6E283E9C4B00013F85 /* GameView.swift in Sources */,
 				BD6B0D82283EB63000013F85 /* GameModel.swift in Sources */,
 				BD6B0D76283EA6C000013F85 /* GameGridView.swift in Sources */,

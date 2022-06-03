@@ -18,14 +18,11 @@ struct GameView: View {
         GeometryReader { geometry in
             ZStack {
                 VStack {
-                    
-                    Button {
+                    GameButton(title: "Quit", backgroundColor: Color(.systemRed), width: 300, action: {
                         viewModel.quitGame()
                         playSound(sound: "sound-tap", type: "mp3")
                         dismiss()
-                    } label: {
-                        GameButton(title: "Quit", backgroundColor: Color(.systemRed), width: 300)
-                    }
+                    })
                     
                     Text(viewModel.gameStatusText)
                         .padding()
@@ -45,11 +42,16 @@ struct GameView: View {
                     }
 
                 } //: VSTACK
-                PopupMessageView(viewModel: viewModel)
+                PopupView(viewModel: viewModel)
             } //: ZSTACK
         } //: GEOMETRY
         .onAppear{
             viewModel.initializeGame()
+        }
+        .onChange(of: viewModel.dismissView) { dismissView in
+            if dismissView {
+                dismiss()
+            }
         }
     }
 }
